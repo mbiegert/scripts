@@ -1,0 +1,18 @@
+[Unit]
+Description=Script to update the dyndns entries regularly.
+After=network.target network-online.target
+
+[Service]
+# The path to the file that is used to save the current public ip address.
+# %T is the tmp directory, this means the file is not present on reboots
+# but that's fine, we can simply make an update upon reboot.
+Environment="IP_FILE=%T/ip-file"
+# The hostname to update
+Environment="SP_HOSTNAME=hostname.spdns.org"
+# The token that can be used to update this hosts.
+Environment="SP_TOKEN=xxxx-xxxx-xxxx"
+ExecStart=/home/pi/update-dns.sh
+Type=oneshot
+User=pi
+Group=pi
+

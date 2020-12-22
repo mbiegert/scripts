@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the dyndns updater every 10 minutes.
+
+[Timer]
+# Run the dyndns timer on boot and every ten minutes.
+OnBootSec=0
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target
