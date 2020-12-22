@@ -16,7 +16,7 @@ set -euo pipefail
 #SP_TOKEN=xxxx-xxxx-xxxx
 
 # make sure that we have the necessary parameters
-if [ -z ${IP_FILE-} ] || [ -z ${SP_HOSTNAME-} ] || [ -z ${SP_TOKEN-} ]; then
+if [ -z "${IP_FILE-}" ] || [ -z "${SP_HOSTNAME-}" ] || [ -z "${SP_TOKEN-}" ]; then
 	echo "Please provide IP_FILE, SP_HOSTNAME and SP_TOKEN variables."
 	exit 1
 fi
@@ -35,7 +35,7 @@ fi
 
 if [ "$CURRENT_IP" != "$LAST_IP" ]; then
 	# try updating the IP
-	RESULT=$(curl --silent "https://update.spdns.de/nic/update?hostname=$SP_HOSTNAME&myip=$CURRENT_IP" --user "$SP_HOSTNAME:$SP_TOKEN")
+	RESULT=$( curl --silent "https://update.spdns.de/nic/update?hostname=$SP_HOSTNAME&myip=$CURRENT_IP" --user "$SP_HOSTNAME:$SP_TOKEN" )
 	RES_WORD=$( echo "$RESULT" | head -n1 | awk '{print $1;}')
 	if [ "$RES_WORD" = "good" -o "$RES_WORD" = "nochg" ]; then
 		echo "Updated host $SP_HOSTNAME from $LAST_IP to $CURRENT_IP."
