@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-# This script updates the dynamic dns entries for this network.
+# This script updates the dynamic dns entries for this network using the secure point
+# dynamic dns service: spdns.org
 #
 # The variables below are expected from the environment. Uncomment them here
 # to overwrite or simply not rely on the environment.
